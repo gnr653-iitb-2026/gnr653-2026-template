@@ -1,22 +1,29 @@
 {
   // GNR653 course environment for GitHub Codespaces.
-  // Uses GitHub's default "universal" image, whose storage is not charged to students.
+  // Uses a small Ubuntu base image. The 10+ GB "universal" image filled the disk during uv sync.
   // Python packages come from uv (pyproject.toml + uv.lock); GDAL command-line tools come from pixi.
   "name": "GNR653 (2026)",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "remoteUser": "vscode",
   "hostRequirements": {
     "cpus": 2
   },
   "containerEnv": {
-    "UV_LINK_MODE": "copy",
-    "UV_PYTHON_PREFERENCE": "only-managed"
+    "UV_PYTHON_PREFERENCE": "only-managed",
+    // Keep the download caches on the large /workspaces disk, next to .venv (hardlinks need the same disk).
+    "UV_CACHE_DIR": "/workspaces/.gnr653-cache/uv",
+    "UV_LINK_MODE": "hardlink",
+    "PIXI_CACHE_DIR": "/workspaces/.gnr653-cache/pixi"
   },
   // remoteEnv reaches every process VS Code starts, including Jupyter kernels (which do not read ~/.bashrc).
-  // The universal image runs as user "codespace", so the paths are written out in full.
+  // The base image runs as user "vscode", so the paths are written out in full.
   "remoteEnv": {
-    "PATH": "/home/codespace/.local/bin:/home/codespace/.pixi/bin:${containerEnv:PATH}"
+    "PATH": "/home/vscode/.local/bin:/home/vscode/.pixi/bin:${containerEnv:PATH}"
   },
-  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  // Run the setup in onCreateCommand and make the editor wait for it, so nobody can open a
+  // notebook while packages are still installing (postCreateCommand runs after the editor opens).
+  "onCreateCommand": "bash .devcontainer/post-create.sh",
+  "waitFor": "onCreateCommand",
   "customizations": {
     "codespaces": {
       "openFiles": ["README.md", "check_setup.ipynb"]
