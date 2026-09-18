@@ -1,0 +1,38 @@
+{
+  // GNR653 course environment for GitHub Codespaces.
+  // Uses GitHub's default "universal" image, whose storage is not charged to students.
+  // Python packages come from uv (pyproject.toml + uv.lock); GDAL command-line tools come from pixi.
+  "name": "GNR653 (2026)",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "containerEnv": {
+    "UV_LINK_MODE": "copy",
+    "UV_PYTHON_PREFERENCE": "only-managed"
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:HOME}/.local/bin:${containerEnv:HOME}/.pixi/bin:${containerEnv:PATH}"
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md", "check_setup.ipynb"]
+    },
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+        "python.terminal.activateEnvironment": true,
+        "jupyter.notebookFileRoot": "${fileDirname}",
+        "files.exclude": {
+          "**/.venv": true
+        },
+        "git.autofetch": true
+      }
+    }
+  }
+}

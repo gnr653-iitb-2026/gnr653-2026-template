@@ -1,0 +1,38 @@
+[project]
+name = "gnr653-2026"
+version = "0.1.0"
+description = "GNR653 (IIT Bombay, 2026): software carpentry for geospatial data"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # scientific Python core
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "scipy",
+    # vector
+    "geopandas",
+    "pyogrio",
+    "shapely",
+    "pyproj",
+    "folium",
+    "mapclassify",
+    # raster
+    "rasterio",
+    "rioxarray",
+    "rasterstats",
+    # N-D arrays and scaling
+    "xarray",
+    "netcdf4",
+    "zarr",
+    "dask[distributed]",
+    "bokeh",
+    # cloud-native data access
+    "pystac-client",
+    "odc-stac",
+    # geostatistics
+    "gstools",
+    # notebooks
+    "jupyterlab",
+    "ipykernel",
+]
