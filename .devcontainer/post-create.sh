@@ -15,7 +15,17 @@ echo "==> Creating the Python environment from uv.lock"
 uv sync --locked
 
 echo "==> Installing GDAL command-line tools (gdalinfo, gdalwarp, ogr2ogr, ...)"
-pixi global install gdal
+# On conda-forge the GDAL programs live in a dependency (libgdal-core), and pixi global only
+# exposes programs from the packages named on the command line. So install GDAL with all
+# format drivers (libgdal) into an environment called "gdal", then expose the programs by name.
+pixi global install --environment gdal gdal libgdal
+# (The Python scripts such as gdal_calc and gdal_merge, and the new "gdal" CLI, are exposed automatically.)
+GDAL_TOOLS=(gdalinfo gdalwarp gdal_translate gdaladdo gdalbuildvrt gdaldem gdal_rasterize
+            gdallocationinfo gdalsrsinfo gdal_contour gdal_grid gdaltindex ogrinfo ogr2ogr)
+for t in "${GDAL_TOOLS[@]}"; do
+  pixi global expose add --environment gdal "$t=$t" >/dev/null 2>&1 || echo "    (skipped $t: not in this GDAL build)"
+done
+gdalinfo --version
 
 echo "==> Registering the Jupyter kernel"
 uv run python -m ipykernel install --user --name gnr653 --display-name "GNR653 (uv)"

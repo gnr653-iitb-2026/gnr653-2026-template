@@ -11,8 +11,10 @@
     "UV_LINK_MODE": "copy",
     "UV_PYTHON_PREFERENCE": "only-managed"
   },
+  // remoteEnv reaches every process VS Code starts, including Jupyter kernels (which do not read ~/.bashrc).
+  // The universal image runs as user "codespace", so the paths are written out in full.
   "remoteEnv": {
-    "PATH": "${containerEnv:HOME}/.local/bin:${containerEnv:HOME}/.pixi/bin:${containerEnv:PATH}"
+    "PATH": "/home/codespace/.local/bin:/home/codespace/.pixi/bin:${containerEnv:PATH}"
   },
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "customizations": {
