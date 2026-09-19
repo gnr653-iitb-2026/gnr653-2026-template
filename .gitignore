@@ -22,3 +22,7 @@ data/
 # Editor and OS clutter
 .DS_Store
 .vscode/
+
+# Your working copies and scratch folders, e.g. lectures/L01/work/ (never committed)
+work/
+sandbox/
