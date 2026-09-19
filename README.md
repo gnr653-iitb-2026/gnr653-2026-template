@@ -9,7 +9,8 @@ This is your personal repository for GNR 653's Software Carpentry section. All y
 |---|---|
 | `pyproject.toml`, `uv.lock`, `.python-version` | The Python environment, managed by uv. Do not edit unless told to. |
 | `check_setup.ipynb` | HW0 environment check. |
-| `ic01/`, `ic02/`, ... | Your in-class assignments. You create these during class. |
+| `lectures/L01/` | Everything for Lecture 1: the notebook, the original data (`original/`), your working copy of the data (`work/`) and a scratch folder (`sandbox/`). Each lecture gets its own folder: `lectures/L02/`, `lectures/L03/`, and so on. Do not edit the notebook or `original/`; they are updated by the course. |
+| `lectures/L01/ic01/` | Your in-class assignment for Lecture 1. You create it during class. The in-class assignment (IC) for Lecture 2 goes in `lectures/L02/ic02/`, and so on. |
 | `th1/`, `th2/`, `th3/` | Your take-home assignments. |
 ## Everyday commands you may need
 ```bash
