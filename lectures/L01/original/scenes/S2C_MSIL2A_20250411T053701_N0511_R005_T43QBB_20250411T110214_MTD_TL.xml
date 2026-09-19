@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Simplified from the Sentinel-2 tile metadata (MTD_TL.xml) for GNR653 L01 -->
+<Tile_Metadata>
+  <TILE_ID>S2C_MSIL2A_20250411T053701_N0511_R005_T43QBB_20250411T110214</TILE_ID>
+  <SENSING_TIME>2025-04-11T05:54:03.167000Z</SENSING_TIME>
+  <CLOUDY_PIXEL_PERCENTAGE>0.68</CLOUDY_PIXEL_PERCENTAGE>
+</Tile_Metadata>
