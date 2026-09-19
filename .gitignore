@@ -23,6 +23,6 @@ data/
 .DS_Store
 .vscode/
 
-# Your working copies and scratch folders, e.g. lectures/L01/work/ (never committed)
+# Your working copies and scratch folders, e.g. mine/L01/work/ (never committed)
 work/
 sandbox/

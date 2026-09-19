@@ -9,18 +9,19 @@ This is your personal repository for GNR 653's Software Carpentry section. All y
 |---|---|
 | `pyproject.toml`, `uv.lock`, `.python-version` | The Python environment, managed by uv. Do not edit unless told to. |
 | `check_setup.ipynb` | HW0 environment check. |
-| `lectures/L01/` | Everything for Lecture 1: the notebook, the original data (`original/`), your working copy of the data (`work/`) and a scratch folder (`sandbox/`). Each lecture gets its own folder: `lectures/L02/`, `lectures/L03/`, and so on. Do not edit the notebook or `original/`; they are updated by the course. |
-| `lectures/L01/ic01/` | Your in-class assignment for Lecture 1. You create it during class. The in-class assignment (IC) for Lecture 2 goes in `lectures/L02/ic02/`, and so on. |
-| `th1/`, `th2/`, `th3/` | Your take-home assignments. |
+| `lectures/L01/` | Course files for Lecture 1: the original notebook and data. The update script keeps them current. **Do not edit anything in `lectures/`.** |
+| `mine/L01/` | Your work for Lecture 1: your copy of the notebook (open this one), your working copy of the data (`work/`), a scratch folder (`sandbox/`) and your in-class assignment (`ic01/`). The update script creates it and never changes it. Lecture 2 is `mine/L02/`, and so on. |
+| `mine/th1/`, `mine/th2/`, `mine/th3/` | Your take-home assignments. |
 ## Everyday commands you may need
 ```bash
 uv run python <my_script.py>            # run a script in the course environment
 uv run jupyter lab                      # start JupyterLab (VS Code notebooks also work)
-bash scripts/update_from_template.sh    # get new lecture notebooks and environment updates
-git add . && git commit -m "<message>" && git push   
+bash scripts/update_from_template.sh    # get new lectures (lectures/) and your copies (mine/)
+git add mine && git commit -m "<message>" && git push
                                         # save your work to GitHub
 ```
 ## Rules that protect your work
+- **Only work in `mine/`.** Anything you change in `lectures/` is overwritten by the next update.
 - **Commit and push before you close the codespace.** A codespace unused for 30 days is deleted, together with anything not pushed.
 - A codespace stops after 30 minutes of inactivity. Files are kept; variables in running notebooks are lost.
 - Do not commit data files. Fetch data in code (see `.gitignore`).
