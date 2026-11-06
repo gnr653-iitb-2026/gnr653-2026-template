@@ -16,13 +16,13 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-N_VALUES = [10, 20, 50, 100, 200]
-RHO_VALUES = [0.0, 0.2, 0.4, 0.6, 0.8]
-EFFECT_VALUES = [0.0, 0.2, 0.5, 0.8]
+N_VALUES = [100]
+RHO_VALUES = [round(0.05 * i, 2) for i in range(20)]      # 0, 0.05, ..., 0.95
+EFFECT_VALUES = [round(0.1 * i, 1) for i in range(10)]    # 0, 0.1, ..., 0.9
 
 
 def make_grid():
-    """All combinations of n, rho and effect: 5 x 5 x 4 = 100 tasks."""
+    """All combinations of n, rho and effect: 1 x 20 x 10 = 200 tasks."""
     rows = itertools.product(N_VALUES, RHO_VALUES, EFFECT_VALUES)
     grid = pd.DataFrame(rows, columns=["n", "rho", "effect"])
     grid.insert(0, "task", range(len(grid)))
